@@ -508,16 +508,6 @@ main() {
     echo ""
 
     check_root
-
-    # Prompt for telemetry consent (after root check so we can save preference)
-    prompt_telemetry_consent
-
-    # Send any queued telemetry from previous installs (network should be up now)
-    send_queued_telemetry
-
-    # Send install_started event (network is up, before we touch modules)
-    send_telemetry "install_started"
-
     check_kernel_version
     check_dependencies
     remove_existing
@@ -538,9 +528,6 @@ main() {
     echo "If WiFi doesn't work, try rebooting."
     echo "To check status: dkms status"
     echo "To uninstall: sudo ./uninstall.sh"
-
-    # Send success telemetry (wait for network - WiFi may take time to reconnect)
-    send_telemetry "install_success" "none" "true"
 }
 
 main "$@"
