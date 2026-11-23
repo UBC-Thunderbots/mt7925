@@ -278,10 +278,6 @@ main() {
     echo ""
 
     check_root
-
-    # Send uninstall_started event (network is up, before we touch modules)
-    send_telemetry "uninstall_started"
-
     unload_modules
     remove_dkms
     cleanup_legacy_files
@@ -298,9 +294,6 @@ main() {
     echo ""
     echo "If WiFi doesn't work, try rebooting to fully"
     echo "restore the stock modules."
-
-    # Send uninstall telemetry (wait for network - stock WiFi may take time to reconnect)
-    send_telemetry "uninstall_success" "none" "true"
 }
 
 main "$@"
